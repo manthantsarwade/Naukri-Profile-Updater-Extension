@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Naukri Updater</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>&#9998; Naukri Updater</h1>
+      <p class="subtitle">Auto-refresh your profile daily</p>
+    </div>
+
+    <!-- Important Note -->
+    <div class="card note-card">
+      <div class="note-icon">⚠️</div>
+      <div class="note-content">
+        <p class="note-title">Prerequisites</p>
+        <ul class="note-list">
+          <li>You must be <strong>logged into Naukri.com</strong> in this Chrome profile</li>
+          <li>Install this extension in the <strong>same Chrome profile</strong> where you use Naukri</li>
+          <li>Keep <strong>Chrome open</strong> for scheduled auto-updates to work</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mode Selector -->
+    <div class="card mode-card">
+      <h2>Update Mode</h2>
+      <div class="mode-toggle">
+        <label class="mode-option">
+          <input type="radio" name="updateMode" value="headline" checked />
+          <span class="mode-pill">
+            <span class="mode-icon">🔤</span> Update Headline
+          </span>
+        </label>
+        <label class="mode-option">
+          <input type="radio" name="updateMode" value="resume" />
+          <span class="mode-pill">
+            <span class="mode-icon">📄</span> Update Resume
+          </span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Resume Upload Card (visible only in resume mode) -->
+    <div id="resumeCard" class="card resume-card hidden">
+      <h2>Your Resume</h2>
+
+      <!-- No resume uploaded state -->
+      <div id="resumeEmpty" class="resume-empty">
+        <div class="resume-empty-icon">📂</div>
+        <p>No resume uploaded yet</p>
+        <p class="resume-hint">Upload once — it auto-renames daily with today's date</p>
+      </div>
+
+      <!-- Resume info (when uploaded) -->
+      <div id="resumeInfo" class="resume-info hidden">
+        <div class="resume-file-row">
+          <span class="resume-file-icon">📄</span>
+          <div class="resume-file-details">
+            <span id="resumeFileName" class="resume-file-name">—</span>
+            <span id="resumeFileSize" class="resume-file-size">—</span>
+          </div>
+        </div>
+        <div class="resume-date-preview">
+          <span class="label">Today's name:</span>
+          <span id="resumeDateName" class="resume-dated-name">—</span>
+        </div>
+        <button id="removeResumeBtn" class="remove-resume-btn">✕ Remove</button>
+      </div>
+
+      <!-- Upload button (always visible) -->
+      <label class="upload-btn" id="uploadLabel">
+        <input type="file" id="resumeFileInput" accept=".pdf,.doc,.docx" hidden />
+        <span id="uploadBtnText">📁 Browse & Upload Resume</span>
+      </label>
+      <div id="resumeMsg" class="resume-msg hidden"></div>
+    </div>
+
+    <!-- Schedule Configuration -->
+    <div class="card schedule-card">
+      <h2>Schedule Time (IST)</h2>
+      <div class="time-picker-row">
+        <input type="time" id="scheduleTime" class="time-input" value="10:15" />
+        <button id="saveTimeBtn" class="save-time-btn">Save</button>
+      </div>
+      <div id="timeSavedMsg" class="time-saved-msg hidden">&#10003; Schedule updated!</div>
+    </div>
+
+    <!-- Status Card -->
+    <div class="card">
+      <div class="status-row">
+        <span class="label">Next run</span>
+        <span id="nextRun" class="value">Loading…</span>
+      </div>
+      <div class="status-row">
+        <span class="label">Schedule</span>
+        <span id="scheduleDisplay" class="value accent">Daily 10:15 AM IST</span>
+      </div>
+      <div class="status-row">
+        <span class="label">Mode</span>
+        <span id="modeDisplay" class="value accent">Headline</span>
+      </div>
+    </div>
+
+    <!-- Run Now Button -->
+    <button id="runNowBtn" class="run-btn">
+      &#9654; Run Now
+    </button>
+    <div id="statusMsg" class="status-msg hidden"></div>
+
+    <!-- Activity Log -->
+    <div class="card log-card">
+      <h2>Activity Log</h2>
+      <div id="logList" class="log-list">
+        <p class="empty-log">No activity yet.</p>
+      </div>
+    </div>
+    <div class="footer">v1.2 &bull; Keep Chrome running for scheduled updates</div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

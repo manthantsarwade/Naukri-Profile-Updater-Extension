@@ -1,0 +1,319 @@
+/* ── Naukri Updater Popup ────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 340px;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #0f1117;
+  color: #e2e8f0;
+}
+
+.container { padding: 20px; }
+
+/* Header */
+.header { text-align: center; margin-bottom: 16px; }
+.header h1 { font-size: 20px; font-weight: 700; color: #fff; }
+.header .subtitle { font-size: 12px; color: #94a3b8; margin-top: 2px; }
+
+/* Cards */
+.card {
+  background: #1a1d2e;
+  border: 1px solid #2a2d3e;
+  border-radius: 12px;
+  padding: 14px;
+  margin-bottom: 14px;
+}
+.status-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 6px 0;
+}
+.status-row + .status-row { border-top: 1px solid #2a2d3e; }
+.label { font-size: 12px; color: #94a3b8; }
+.value { font-size: 12px; font-weight: 600; color: #cbd5e1; }
+.value.accent { color: #818cf8; }
+
+/* ── Important Note Card ─────────────────────────────────── */
+.note-card {
+  display: flex; gap: 10px; align-items: flex-start;
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+.note-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+.note-content { flex: 1; }
+.note-title {
+  font-size: 12px; font-weight: 700; color: #fbbf24;
+  margin-bottom: 6px;
+}
+.note-list {
+  list-style: none; padding: 0;
+}
+.note-list li {
+  font-size: 11px; color: #d4a054;
+  padding: 2px 0; padding-left: 12px;
+  position: relative; line-height: 1.4;
+}
+.note-list li::before {
+  content: "•"; position: absolute; left: 0; color: #f59e0b;
+}
+.note-list li strong { color: #fcd34d; }
+
+/* ── Mode Selector ───────────────────────────────────────── */
+.mode-card h2 {
+  font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #94a3b8;
+}
+.mode-toggle {
+  display: flex; gap: 8px;
+}
+.mode-option {
+  flex: 1; cursor: pointer;
+}
+.mode-option input[type="radio"] {
+  display: none;
+}
+.mode-pill {
+  display: flex; align-items: center; justify-content: center; gap: 6px;
+  padding: 10px 8px;
+  border: 2px solid #2a2d3e;
+  border-radius: 10px;
+  background: #111322;
+  font-size: 12px; font-weight: 600;
+  color: #94a3b8;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+.mode-pill .mode-icon { font-size: 14px; }
+.mode-option input[type="radio"]:checked + .mode-pill {
+  border-color: #818cf8;
+  background: rgba(129, 140, 248, 0.1);
+  color: #c7d2fe;
+  box-shadow: 0 0 12px rgba(129, 140, 248, 0.15);
+}
+.mode-option:hover .mode-pill {
+  border-color: #3a3d5e;
+}
+
+/* ── Resume Upload Card ──────────────────────────────────── */
+.resume-card h2 {
+  font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #94a3b8;
+}
+.resume-card.hidden { display: none; }
+
+/* Empty state */
+.resume-empty {
+  text-align: center; padding: 12px 0;
+}
+.resume-empty-icon { font-size: 28px; margin-bottom: 6px; }
+.resume-empty p {
+  font-size: 12px; color: #64748b;
+}
+.resume-hint {
+  font-size: 11px !important; color: #475569 !important; margin-top: 4px;
+}
+.resume-empty.hidden { display: none; }
+
+/* Resume info */
+.resume-info {
+  margin-bottom: 10px;
+}
+.resume-info.hidden { display: none; }
+
+.resume-file-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px;
+  background: #111322;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.resume-file-icon { font-size: 24px; }
+.resume-file-details {
+  display: flex; flex-direction: column; gap: 2px; overflow: hidden;
+}
+.resume-file-name {
+  font-size: 12px; font-weight: 600; color: #c7d2fe;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.resume-file-size {
+  font-size: 11px; color: #64748b;
+}
+
+.resume-date-preview {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 8px 10px;
+  background: #111322;
+  border-radius: 8px;
+  margin-bottom: 8px;
+}
+.resume-dated-name {
+  font-size: 11px; font-weight: 600; color: #4ade80;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  max-width: 200px;
+}
+
+.remove-resume-btn {
+  width: 100%;
+  padding: 7px;
+  border: 1px solid #7f1d1d;
+  border-radius: 8px;
+  background: rgba(127, 29, 29, 0.2);
+  color: #fca5a5;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.remove-resume-btn:hover {
+  background: rgba(127, 29, 29, 0.4);
+  border-color: #991b1b;
+}
+
+/* Upload button */
+.upload-btn {
+  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  padding: 10px;
+  border: 2px dashed #2a2d3e;
+  border-radius: 10px;
+  background: transparent;
+  color: #818cf8;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-top: 8px;
+}
+.upload-btn:hover {
+  border-color: #818cf8;
+  background: rgba(129, 140, 248, 0.05);
+}
+
+.resume-msg {
+  margin-top: 8px;
+  font-size: 11px;
+  text-align: center;
+  padding: 6px;
+  border-radius: 6px;
+  transition: opacity 0.3s;
+}
+.resume-msg.hidden { display: none; }
+.resume-msg.success { color: #4ade80; background: rgba(6, 78, 59, 0.3); }
+.resume-msg.error { color: #fca5a5; background: rgba(127, 29, 29, 0.3); }
+
+/* Schedule Config */
+.schedule-card h2 { font-size: 13px; font-weight: 600; margin-bottom: 10px; color: #94a3b8; }
+.time-picker-row {
+  display: flex; gap: 8px; align-items: center;
+}
+.time-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #2a2d3e;
+  border-radius: 8px;
+  background: #111322;
+  color: #e2e8f0;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.time-input:focus { border-color: #818cf8; }
+.time-input::-webkit-calendar-picker-indicator {
+  filter: invert(0.7);
+  cursor: pointer;
+}
+.save-time-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #22c55e;
+  color: #fff;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.save-time-btn:hover { background: #16a34a; transform: translateY(-1px); }
+.save-time-btn:active { transform: translateY(0); }
+.time-saved-msg {
+  margin-top: 8px;
+  font-size: 11px;
+  color: #4ade80;
+  text-align: center;
+  transition: opacity 0.3s;
+}
+.time-saved-msg.hidden { display: none; }
+
+/* Run Button */
+.run-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+}
+.run-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+.run-btn:active { transform: translateY(0); }
+.run-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+.run-btn.running {
+  background: linear-gradient(135deg, #f59e0b, #f97316);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+/* Status Message */
+.status-msg {
+  text-align: center;
+  font-size: 12px;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.status-msg.hidden { display: none; }
+.status-msg.success { background: #064e3b; color: #6ee7b7; }
+.status-msg.error { background: #7f1d1d; color: #fca5a5; }
+.status-msg.info { background: #1e3a5f; color: #93c5fd; }
+
+/* Log */
+.log-card h2 { font-size: 13px; font-weight: 600; margin-bottom: 8px; color: #94a3b8; }
+.log-list { max-height: 160px; overflow-y: auto; }
+.log-list::-webkit-scrollbar { width: 4px; }
+.log-list::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+.empty-log { font-size: 12px; color: #475569; text-align: center; padding: 12px 0; }
+.log-entry {
+  font-size: 11px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  margin-bottom: 4px;
+  background: #111322;
+}
+.log-entry .log-time { color: #64748b; }
+.log-entry .log-msg { color: #cbd5e1; }
+.log-entry.fail .log-msg { color: #fca5a5; }
+
+/* Footer */
+.footer {
+  text-align: center;
+  font-size: 10px;
+  color: #475569;
+  margin-top: 8px;
+}
